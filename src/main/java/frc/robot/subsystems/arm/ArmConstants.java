@@ -11,6 +11,8 @@ public static final double kVoltageCompensation = 0;
 public static final boolean kInverted = false;
 public static final boolean kBrake = false;
 public static final Angle kLevelFourAngle = Degrees.of(0);
+public static final Angle kLevelThreeAngle = Degrees.of(0);
+public static final Angle kLevelTwoAngle = Degrees.of(0);
 
 
 }
