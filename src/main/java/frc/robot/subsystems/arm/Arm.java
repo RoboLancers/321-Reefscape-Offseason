@@ -93,6 +93,7 @@ public class Arm extends SubsystemBase {
             armMotor.setControl(armVoltage);
     }
 
+
     public void goToL3(){
         MotionMagicVoltage armVoltage = new MotionMagicVoltage(ArmConstants.kLevelThreeAngle);
             armMotor.setControl(armVoltage);
