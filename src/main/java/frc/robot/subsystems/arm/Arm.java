@@ -30,7 +30,7 @@ import static edu.wpi.first.units.Units.Degrees;
 
 public class Arm extends SubsystemBase {
     
-    public TalonFX armMotor = new TalonFX(armID);
+    public TalonFX armMotor = new TalonFX(ArmConstants.armID);
     public PIDController pid = new PIDController (0,0,0);
     public ArmFeedforward armFeedForward = new ArmFeedforward(0,0,0);
     private TalonFXConfiguration talonConfigs = new TalonFXConfiguration( );
