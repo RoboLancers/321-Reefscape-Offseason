@@ -40,11 +40,6 @@ public class Arm extends SubsystemBase {
     private FeedbackConfigs feedbackConfigs = new FeedbackConfigs();
     private Slot0Configs slot0Configs =  new Slot0Configs();
     
-    public double kP;
-    public double kI;
-    public double kD;
-    public double kG;
-
     public Arm() {
         motorConfigurations();
     }
@@ -57,13 +52,13 @@ public class Arm extends SubsystemBase {
         motorOutputConfigs.withNeutralMode(NeutralModeValue.Brake);
         currentLimitsConfigs.withStatorCurrentLimit(0) 
                             .withStatorCurrentLimitEnable(true);
-        feedbackConfigs.withSensorToMechanismRatio(6.7);
+        feedbackConfigs.withSensorToMechanismRatio(ArmConstants.sensorToMechanismRatio);
         
         //PID configs
-        slot0Configs.withKP(kP);
-        slot0Configs.withKI(kI);
-        slot0Configs.withKD(kD);
-        slot0Configs.withKG(kG);
+        slot0Configs.withKP(ArmConstants.kP);
+        slot0Configs.withKI(ArmConstants.kI);
+        slot0Configs.withKD(ArmConstants.kD);
+        slot0Configs.withKG(ArmConstants.kG);
 
         armMotor.getConfigurator()
             .apply(motorOutputConfigs);
@@ -115,16 +110,11 @@ public class Arm extends SubsystemBase {
         TunableConstant kG = new TunableConstant("/Arm/kG", 0);
         TunableConstant angle = new TunableConstant("/Angle/",0);
 
-        this.kP = kP.get();
-        this.kD = kD.get();
-        this.kG = kG.get();
+        ArmConstants.kP = kP.get();
+        ArmConstants.kD = kD.get();
+        ArmConstants.kG = kG.get();
 
         goToAngle(Degrees.of(angle.get()));
 
     }
-
-    //Degrees.of(double) = angle;
-    //angle.in(Degrees) = double;    
-
-    //kG, L2-3, Command for tuning
 }
